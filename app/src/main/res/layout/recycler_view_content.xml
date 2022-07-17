@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/background_color"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/recycler_item_shaps"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+
+            >
+
+           <include android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               layout="@layout/multiple_imageview"
+               >
+
+           </include>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="اسم المنتج  : "
+                android:textColor="@color/color3"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:text="بلاستك"
+                android:id="@+id/m_report_recycler_name"
+                android:layout_weight="1"
+                android:textColor="@color/color3"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="السعر           : "
+                android:textColor="@color/color3"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:text="100 جنيه"
+                android:id="@+id/plactic_price"
+                android:layout_weight="1"
+                android:textColor="@color/color3"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                >
+            </TextView>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_shape"
+        android:layout_gravity="end"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:text=" عرض التفاصيل "
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
+            >
+        </TextView>
+    </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

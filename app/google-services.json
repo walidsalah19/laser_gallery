@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "808188719077",
+    "project_id": "laser-cda3a",
+    "storage_bucket": "laser-cda3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808188719077:android:4e5f86c3f45c70df51c90c",
+        "android_client_info": {
+          "package_name": "economical.economical.economical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808188719077-p9te2d41n2386v292hml0anbgrmvff2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "economical.economical.economical",
+            "certificate_hash": "005e7d8f63eeda637f04775bf6e2f13df6d4e432"
+          }
+        },
+        {
+          "client_id": "808188719077-l2qq7rpfd2679ckbg3drp2b0ujsgncns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYXS8jpDTbrPlnHTXBS8k8AJauZSIceXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808188719077-l2qq7rpfd2679ckbg3drp2b0ujsgncns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

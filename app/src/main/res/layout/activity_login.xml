@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/background_color"
+    tools:context=".user_access.login">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="20dp"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@color/background_color"
+            android:layout_gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:background="@color/background_color" >
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/email_edittext_login"
+                    android:textColorHint="@color/color3"
+                    android:background="@drawable/edittext_shape"
+                    android:padding="7dp"
+                    android:textColor="@color/color3"
+                    android:paddingStart="10dp"
+                    android:inputType="textEmailAddress"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:hint=" البريد الالكتروني "
+                    android:ems="10"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/email_password_text_login"
+                    android:textColor="@color/color3"
+                    android:textColorHint="@color/color3"
+                    android:background="@drawable/edittext_shape"
+                    android:padding="7dp"
+                    android:paddingStart="10dp"
+                    android:inputType="textPassword"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    android:hint=" كلمة المرور "
+                    android:ems="10"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="إظهار كلمة المرور"
+                        android:textColor="@color/color3"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        >
+                    </TextView>
+                    <CheckBox
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/show_password_login"
+                        android:layout_weight="1"
+                        >
+                    </CheckBox>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:id="@+id/login_button"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:padding="7dp"
+                    android:background="@drawable/button_shape"
+                    android:text="تسجيل الدخول "/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
