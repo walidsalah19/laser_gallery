@@ -13,8 +13,10 @@ import economical.economical.economical.data.prodect_data;
 public class shoeprodect_ciewmodel extends ViewModel {
     MutableLiveData<ArrayList<prodect_data>> mute;
     showproduct_model model;
+    String type;
     public void initial(Fragment fragment,String type)
     {
+        this.type=type;
         if (mute != null)
         {
             return;
@@ -24,6 +26,10 @@ public class shoeprodect_ciewmodel extends ViewModel {
     }
     public LiveData<ArrayList<prodect_data>> getdata()
     {
+        if (mute==null)
+        {
+            mute=model.getdata(type);
+        }
         return mute;
     }
 }

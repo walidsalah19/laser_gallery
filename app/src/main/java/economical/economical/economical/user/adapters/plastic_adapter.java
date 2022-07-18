@@ -48,12 +48,15 @@ public class plastic_adapter extends RecyclerView.Adapter<plastic_adapter.help>{
                 b.putString("price",arrayList.get(position).getPrice());
                 b.putString("des",arrayList.get(position).getDescription());
                 b.putString("type",arrayList.get(position).getType());
+                b.putString("id",arrayList.get(position).getId());
                 b.putStringArrayList("image",arrayList.get(position).getImages());
                 product_details pro=new product_details();
                 pro.setArguments(b);
                 if (type==0)
                 {
-                    fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.admin_framelayout, new update_product()).addToBackStack(null).commitAllowingStateLoss();
+                    update_product u=new update_product();
+                    u.setArguments(b);
+                    fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.admin_framelayout, u).addToBackStack(null).commitAllowingStateLoss();
                 }
                 else if (type==1){
                     fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.user_framelayout, pro).addToBackStack(null).commitAllowingStateLoss();

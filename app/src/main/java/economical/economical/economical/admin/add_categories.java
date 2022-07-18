@@ -125,4 +125,9 @@ public class add_categories extends Fragment implements Datalistener {
         });
 
     }
+
+    @Override
+    public void onadddata() {
+
+    }
 }

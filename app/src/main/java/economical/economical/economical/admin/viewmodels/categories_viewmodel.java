@@ -25,7 +25,10 @@ public class categories_viewmodel extends ViewModel {
         categories=model.gatlivedata();
     }
     public LiveData<ArrayList<category_data>> getCategories() {
-        Log.d("act",categories.getValue().size()+"");
+        if (categories == null)
+        {
+            categories=model.gatlivedata();
+        }
         return categories;
     }
 }

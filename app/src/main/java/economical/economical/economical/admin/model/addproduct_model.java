@@ -1,6 +1,7 @@
 package economical.economical.economical.admin.model;
 
 import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -47,7 +48,7 @@ public class addproduct_model {
                   if (task.isSuccessful())
                   {
                       arrayList.add(true);
-                      listener.ongetdata();
+                      listener.onadddata();
                   }
             }
         });
@@ -62,9 +63,9 @@ public class addproduct_model {
     public MutableLiveData<ArrayList<String>> getimage(ArrayList<Uri> arr)
     {
         images=new ArrayList<String>();
-        for (Uri u:arr)
+        for (int i=0;i<arr.size();i++)
         {
-            upload_image(u);
+            upload_image(arr.get(i));
         }
         MutableLiveData<ArrayList<String>> mute=new MutableLiveData<ArrayList<String>>();
         mute.setValue(images);
@@ -89,10 +90,24 @@ public class addproduct_model {
                 if (task.isSuccessful()) {
                     Uri i = task.getResult();
                     images.add(i.toString());
-                    listener.ongetdata();
                 } else {
                 }
                 listener.ongetdata();
+            }
+        });
+    }
+
+    public void delete_product(String type, String id) {
+        DatabaseReference database= FirebaseDatabase.getInstance().getReference();
+        database.child(type).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                {
+                    Toast.makeText( fragment.getActivity(),"تم حذف المنتج",Toast.LENGTH_LONG).show();
+                    fragment.getActivity().onBackPressed();
+
+                }
             }
         });
     }

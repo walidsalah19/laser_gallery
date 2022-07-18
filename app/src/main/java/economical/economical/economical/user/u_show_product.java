@@ -109,4 +109,9 @@ public class u_show_product extends Fragment implements Datalistener {
            }
        });
     }
+
+    @Override
+    public void onadddata() {
+
+    }
 }

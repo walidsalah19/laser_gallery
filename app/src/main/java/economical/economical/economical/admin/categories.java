@@ -65,6 +65,12 @@ public class categories extends Fragment implements Datalistener {
             }
         });
     }
+
+    @Override
+    public void onadddata() {
+
+    }
+
     private void add_newcategory(View v)
     {
         newcategory=v.findViewById(R.id.add_new_category);

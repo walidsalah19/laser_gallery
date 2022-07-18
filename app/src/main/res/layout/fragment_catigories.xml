@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="اضافة فئه جديده"
+            android:textColor="@color/white"
             app:icon="@drawable/ic_baseline_add_24"
             android:layout_alignParentBottom="true"
             />

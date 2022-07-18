@@ -16,8 +16,10 @@ import economical.economical.economical.data.category_data;
 public class add_category_viewmodel extends ViewModel {
     MutableLiveData<ArrayList<String>> image ;
     addcategories_model model;
+    Uri uri;
     public void initial(Fragment fragment, Uri uri)
     {
+        this.uri = uri;
         if (image != null)
         {
             return;
@@ -32,6 +34,10 @@ public class add_category_viewmodel extends ViewModel {
     }
     public LiveData<ArrayList<String>>getImage()
     {
+        if (image==null)
+        {
+            image=model.getimage(uri);
+        }
         return image;
     }
 

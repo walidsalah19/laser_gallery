@@ -49,6 +49,8 @@ public class showproduct_model {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 prodect_data.clear();
+                super_data.clear();
+                prodect_id.clear();
                 for (DataSnapshot snap:snapshot.getChildren())
                 {
                     String name=snap.child("name").getValue().toString();
@@ -71,6 +73,7 @@ public class showproduct_model {
     }
     private void get_images(ArrayList<String> id,String type)
     {
+
         for (int i=0;i<id.size();i++)
         {
             int y= i;
@@ -80,7 +83,7 @@ public class showproduct_model {
                     if (snapshot.exists()) {
                         ArrayList<String>  images=new ArrayList<String>();
                         for (DataSnapshot snap : snapshot.getChildren()) {
-                            String i = snap.child("image").getValue().toString();
+                            String i = snap.getValue().toString();
                             images.add(i);
                         }
                         prodect_data.add(new prodect_data(super_data.get(y).getName(), super_data.get(y).getDescription()
