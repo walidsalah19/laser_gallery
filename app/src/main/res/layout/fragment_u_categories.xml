@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:id="@+id/user_categories"
         android:layout_margin="5dp"
-        android:layoutAnimation="@anim/recyclerview"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

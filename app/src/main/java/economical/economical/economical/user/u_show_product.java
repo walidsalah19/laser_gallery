@@ -2,7 +2,6 @@ package economical.economical.economical.user;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -10,16 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -43,13 +35,15 @@ public class u_show_product extends Fragment implements Datalistener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_plastic, container, false);
+        View v= inflater.inflate(R.layout.fragment_u_showproduct, container, false);
 
         viewmodel=new ViewModelProvider(getActivity()).get(shoeprodect_ciewmodel.class);
+        viewmodel.initial(u_show_product.this,gettype());
         recyclerView_method(v);
         searchview(v);
         return v;
     }
+
     private String gettype()
     {
        return getArguments().getString("type");
@@ -57,9 +51,11 @@ public class u_show_product extends Fragment implements Datalistener {
     private void recyclerView_method(View view) {
         recyclerView=view.findViewById(R.id.plastic);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        viewmodel.initial(u_show_product.this,gettype());
+        arrayList=new ArrayList<prodect_data>();
+        arrayList.addAll(viewmodel.getdata().getValue());
         adapter=new plastic_adapter(viewmodel.getdata().getValue(), u_show_product.this,1);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
     private void searchview(View v)
     {
@@ -103,9 +99,8 @@ public class u_show_product extends Fragment implements Datalistener {
        viewmodel.getdata().observe(getActivity(), new Observer<ArrayList<prodect_data>>() {
            @Override
            public void onChanged(ArrayList<prodect_data> prodect_data) {
-               adapter.notifyDataSetChanged();
-               arrayList=new ArrayList<prodect_data>();
                arrayList.addAll(viewmodel.getdata().getValue());
+               adapter.notifyDataSetChanged();
            }
        });
     }

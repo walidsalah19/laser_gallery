@@ -32,7 +32,6 @@
                 android:id="@+id/plastic"
                 android:layout_below="@id/search_view"
                 android:layout_margin="5dp"
-                android:layoutAnimation="@anim/recyclerview"
                 >
             </androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>

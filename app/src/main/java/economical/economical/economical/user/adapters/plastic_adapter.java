@@ -59,7 +59,7 @@ public class plastic_adapter extends RecyclerView.Adapter<plastic_adapter.help>{
                     fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.admin_framelayout, u).addToBackStack(null).commitAllowingStateLoss();
                 }
                 else if (type==1){
-                    fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.user_framelayout, pro).addToBackStack(null).commitAllowingStateLoss();
+                    fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.user_framelayout, pro).addToBackStack(null).commit();
                 }
             }
         });

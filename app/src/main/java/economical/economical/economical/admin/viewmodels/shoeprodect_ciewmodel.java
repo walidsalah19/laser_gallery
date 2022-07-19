@@ -16,11 +16,12 @@ public class shoeprodect_ciewmodel extends ViewModel {
     String type;
     public void initial(Fragment fragment,String type)
     {
-        this.type=type;
-        if (mute != null)
+
+        if (mute != null&&this.type==type)
         {
             return;
         }
+        this.type=type;
         model=showproduct_model.initialize(fragment);
         mute=model.getdata(type);
     }

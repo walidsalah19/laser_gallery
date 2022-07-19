@@ -56,13 +56,6 @@ public class show_product extends Fragment implements Datalistener{
         add_new_product(v);
         return v;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //arrayList.clear();
-    }
-
     private String gettype()
     {
         return getArguments().getString("type");
@@ -70,6 +63,11 @@ public class show_product extends Fragment implements Datalistener{
     private void recyclerView_method(View view) {
         recyclerView=view.findViewById(R.id.a_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        arrayList=new ArrayList<prodect_data>();
+        arrayList.addAll(viewmodel.getdata().getValue());
+        adapter=new plastic_adapter(viewmodel.getdata().getValue(), show_product.this,0);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
     private void searchview(View v)
@@ -90,10 +88,6 @@ public class show_product extends Fragment implements Datalistener{
     }
     private void get_device_searched(String s) {
         ArrayList<prodect_data>arr=new ArrayList<>();
-        if (arrayList==null)
-        {
-            arrayList=new ArrayList<>();
-        }
         for(int i=0;i<arrayList.size();i++) {
             if(arrayList.get(i).getName().contains(s))
             {
@@ -131,13 +125,8 @@ public class show_product extends Fragment implements Datalistener{
         viewmodel.getdata().observe(getActivity(), new Observer<ArrayList<prodect_data>>() {
             @Override
             public void onChanged(ArrayList<prodect_data> prodect_data) {
-                arrayList=new ArrayList<prodect_data>();
-                for(int i = 0; i <viewmodel.getdata().getValue().size();i++)
-                {
-                    arrayList.add(viewmodel.getdata().getValue().get(i));
-                }
-                adapter=new plastic_adapter(viewmodel.getdata().getValue(), show_product.this,0);
-                recyclerView.setAdapter(adapter);
+                arrayList.clear();
+                arrayList.addAll(viewmodel.getdata().getValue());
                 adapter.notifyDataSetChanged();
             }
         });

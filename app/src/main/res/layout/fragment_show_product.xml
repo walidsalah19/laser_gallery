@@ -28,8 +28,7 @@
                 android:layout_below="@id/a_search_view"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layoutAnimation="@anim/recyclerview">
+                android:layout_marginEnd="5dp">
             </androidx.recyclerview.widget.RecyclerView>
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/add_new_product"
