@@ -1,6 +1,7 @@
 package economical.economical.economical.admin.model;
 
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,8 +11,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -39,6 +43,41 @@ public class addcategories_model {
         fragment=fragmet;
         listener=(Datalistener) fragment;
         return  model;
+    }
+    private boolean found=false;
+    public void check_data(category_data data)
+    {
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        database.child("categories").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists())
+                {
+                    for (DataSnapshot snap:snapshot.getChildren())
+                    {
+                        String name=snap.child("name").getValue().toString();
+                        if (name.equals(data.getName()))
+                        {
+                            found=true;
+                            break;
+                        }
+                    }
+                    if (found)
+                    {
+                        Toast.makeText(fragment.getActivity(), "لا يمكنك اضافة هذه الفئه لانها موجودة بالفعل", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        addcategories(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     public void addcategories(category_data data)
     {

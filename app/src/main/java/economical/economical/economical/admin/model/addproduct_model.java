@@ -1,6 +1,7 @@
 package economical.economical.economical.admin.model;
 
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,8 +11,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -21,6 +25,7 @@ import java.util.UUID;
 
 import economical.economical.economical.admin.Datalistener;
 import economical.economical.economical.data.prodect_data;
+import economical.economical.economical.data.super_prodect_data;
 
 public class addproduct_model {
     private static addproduct_model model;
@@ -28,6 +33,7 @@ public class addproduct_model {
     private ArrayList<String> images;
     private static Datalistener listener;
     private static Fragment fragment;
+    private static DatabaseReference database;
     public static addproduct_model intialize(Fragment frag)
     {
         fragment=frag;
@@ -36,12 +42,44 @@ public class addproduct_model {
             model=new addproduct_model();
         }
         listener=(Datalistener) fragment;
+         database= FirebaseDatabase.getInstance().getReference();
+
         return model;
+    }
+    private boolean found=false;
+    private void check_founddata(String type, String id, prodect_data data)
+    {
+        database= FirebaseDatabase.getInstance().getReference();
+        database.child(type).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap:snapshot.getChildren())
+                {
+                    String name=snap.child("name").getValue().toString();
+                    if (name.equals(data.getName()))
+                    {
+                       found=true;
+                    }
+                }
+                if (found)
+                {
+                    Toast.makeText(fragment.getActivity(), "لا يمكنك اضافه هذا المنتج لانه موجود بالفعل", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    add_data(type,id,data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     private void add_data(String type, String id, prodect_data data)
     {
         arrayList=new ArrayList<Boolean>();
-        DatabaseReference database= FirebaseDatabase.getInstance().getReference();
         database.child(type).child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -55,7 +93,7 @@ public class addproduct_model {
     }
     public MutableLiveData<ArrayList<Boolean>> checkdata(String type, String id, prodect_data data)
     {
-        add_data(type,id,data);
+        check_founddata(type, id, data);
         MutableLiveData<ArrayList<Boolean>> mute=new MutableLiveData<ArrayList<Boolean>>();
         mute.setValue(arrayList);
         return mute;

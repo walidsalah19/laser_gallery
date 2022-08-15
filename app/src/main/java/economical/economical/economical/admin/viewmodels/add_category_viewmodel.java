@@ -30,7 +30,7 @@ public class add_category_viewmodel extends ViewModel {
     public void intial_categories(Fragment fragment,category_data data)
     {
         model=addcategories_model.initialize(fragment);
-        model.addcategories(data);
+        model.check_data(data);
     }
     public LiveData<ArrayList<String>>getImage()
     {

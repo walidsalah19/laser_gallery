@@ -33,6 +33,10 @@ public class categories_model {
         datalistener=(Datalistener) context;
         return model;
     }
+    private void rxjava()
+    {
+
+    }
     private void get_categories()
     {
         categoryData=new ArrayList<>();

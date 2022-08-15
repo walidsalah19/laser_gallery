@@ -26,7 +26,7 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 change_local_language("ar");
-                startActivity(new Intent(Splash.this, user.class));
+                startActivity(new Intent(Splash.this, login.class));
             }
         },3000);
     }
