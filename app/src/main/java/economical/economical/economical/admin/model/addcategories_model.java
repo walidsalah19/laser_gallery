@@ -1,7 +1,6 @@
 package economical.economical.economical.admin.model;
 
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +20,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
-import economical.economical.economical.R;
-import economical.economical.economical.admin.Datalistener;
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.data.category_data;
 
 public class addcategories_model {

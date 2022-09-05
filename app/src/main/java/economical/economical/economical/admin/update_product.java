@@ -19,11 +19,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
-import java.util.UUID;
 
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.R;
 import economical.economical.economical.admin.viewmodels.addproduct_viewmodel;
 import economical.economical.economical.data.prodect_data;
@@ -123,7 +121,7 @@ public class update_product extends Fragment implements Datalistener {
          delete.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 viewmodel.delete_product(type.getText().toString(),id);
+                 viewmodel.delete_product(update_product.this,type.getText().toString(),id);
              }
          });
      }

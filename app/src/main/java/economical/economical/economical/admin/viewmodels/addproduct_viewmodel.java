@@ -53,8 +53,8 @@ public class addproduct_viewmodel extends ViewModel {
         }
         return images;
     }
-    public void delete_product(String type, String id)
+    public void delete_product(Fragment fragment,String type, String id)
     {
-        model.delete_product(type,id);
+        model.delete_product(fragment,type,id);
     }
 }

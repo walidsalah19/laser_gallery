@@ -2,20 +2,13 @@ package economical.economical.economical.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
-
-import java.util.ArrayList;
 
 import economical.economical.economical.R;
-import economical.economical.economical.admin.adapters.categories_adapter;
+import economical.economical.economical.adapters.categories_adapter;
 import economical.economical.economical.admin.viewmodels.categories_viewmodel;
-import economical.economical.economical.data.category_data;
 
 public class admin extends AppCompatActivity {
     private Toolbar toolbar;

@@ -1,6 +1,5 @@
 package economical.economical.economical.admin.model;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -15,12 +14,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import economical.economical.economical.admin.Datalistener;
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.data.category_data;
+import economical.economical.economical.data.prodect_data;
 
 public class categories_model {
     private static categories_model model;
     private ArrayList<category_data> categoryData;
+    private ArrayList<prodect_data> productdata;
     static Fragment context;
     static Datalistener datalistener;
     public static categories_model intialize(Fragment Context)
@@ -32,10 +33,6 @@ public class categories_model {
         }
         datalistener=(Datalistener) context;
         return model;
-    }
-    private void rxjava()
-    {
-
     }
     private void get_categories()
     {
@@ -64,6 +61,7 @@ public class categories_model {
             }
         });
     }
+
     public MutableLiveData<ArrayList<category_data>> gatlivedata()
     {
         get_categories();

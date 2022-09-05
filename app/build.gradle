@@ -5,15 +5,15 @@ plugins {
 
 android {
     compileSdkVersion 31
-    buildToolsVersion "32.0.0"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "economical.economical.economical"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 2
-        versionName "1.1"
-
+        versionCode 3
+        versionName "1.2"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,9 +36,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    //mvvm
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
     //firebase
     implementation 'com.google.firebase:firebase-database:20.0.5'
 
@@ -47,12 +47,23 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.13.2'
+    //firebase
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.firebase:firebase-messaging:23.0.7'
+    implementation 'com.google.firebase:firebase-auth:21.0.7'
+    implementation 'com.google.firebase:firebase-firestore:24.2.2'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.2'
+
     //livedata
     implementation "android.arch.lifecycle:extensions:$version"
-    implementation 'com.google.firebase:firebase-storage:20.0.1'
     annotationProcessor "android.arch.lifecycle:compiler:$version"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
+    //mvvm
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

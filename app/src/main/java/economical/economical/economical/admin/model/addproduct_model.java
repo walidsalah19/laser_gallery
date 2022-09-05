@@ -1,7 +1,6 @@
 package economical.economical.economical.admin.model;
 
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,9 +22,8 @@ import com.google.firebase.storage.StorageTask;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import economical.economical.economical.admin.Datalistener;
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.data.prodect_data;
-import economical.economical.economical.data.super_prodect_data;
 
 public class addproduct_model {
     private static addproduct_model model;
@@ -53,19 +51,15 @@ public class addproduct_model {
         database.child(type).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap:snapshot.getChildren())
-                {
-                    String name=snap.child("name").getValue().toString();
-                    if (name.equals(data.getName()))
-                    {
-                       found=true;
+                for (DataSnapshot snap:snapshot.getChildren()) {
+                    String name = snap.child("name").getValue().toString();
+                    if (name.equals(data.getName())) {
+                        found = true;
+                        //Toast.makeText(fragment.getActivity(), "لا يمكنك اضافه هذا المنتج لانه موجود بالفعل", Toast.LENGTH_SHORT).show();
+                        break;
                     }
                 }
-                if (found)
-                {
-                    Toast.makeText(fragment.getActivity(), "لا يمكنك اضافه هذا المنتج لانه موجود بالفعل", Toast.LENGTH_SHORT).show();
-                }
-                else
+                if (!found)
                 {
                     add_data(type,id,data);
                 }
@@ -135,7 +129,7 @@ public class addproduct_model {
         });
     }
 
-    public void delete_product(String type, String id) {
+    public void delete_product(Fragment fragment,String type, String id) {
         DatabaseReference database= FirebaseDatabase.getInstance().getReference();
         database.child(type).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -143,6 +137,7 @@ public class addproduct_model {
                 if (task.isSuccessful())
                 {
                     Toast.makeText( fragment.getActivity(),"تم حذف المنتج",Toast.LENGTH_LONG).show();
+                   // listener.onadddata();
                     fragment.getActivity().onBackPressed();
 
                 }

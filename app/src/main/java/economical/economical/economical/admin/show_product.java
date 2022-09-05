@@ -2,7 +2,6 @@ package economical.economical.economical.admin;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -10,27 +9,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.R;
 import economical.economical.economical.admin.viewmodels.shoeprodect_ciewmodel;
 import economical.economical.economical.data.prodect_data;
-import economical.economical.economical.user.adapters.plastic_adapter;
-import economical.economical.economical.user.u_show_product;
+import economical.economical.economical.adapters.plastic_adapter;
 
-public class show_product extends Fragment implements Datalistener{
+public class show_product extends Fragment implements Datalistener {
     private RecyclerView recyclerView;
     private ArrayList<prodect_data> arrayList;
     private ArrayList<String> images;

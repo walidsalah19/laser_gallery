@@ -23,7 +23,7 @@ import economical.economical.economical.multiple_imageview.imageview;
 public class product_details extends Fragment {
 
 
-     TextView name,price,des,type;
+     TextView name,price,des,type,details;
      ArrayList<String> image;
     RecyclerView recyclerView;
     @Override
@@ -66,6 +66,8 @@ public class product_details extends Fragment {
         des=v.findViewById(R.id.product_des);
         price=v.findViewById(R.id.product_price);
         type=v.findViewById(R.id.product_type);
+        details=v.findViewById(R.id.details);
+
          recyclerView=(RecyclerView) v.findViewById(R.id.multipleImageview);
 
     }
@@ -76,6 +78,10 @@ public class product_details extends Fragment {
         String de=getArguments().getString("des");
         String ty=getArguments().getString("type");
         image=getArguments().getStringArrayList("image");
+        if (ty.equals("العروض"))
+        {
+            details.setText("تفاصيل العرض :");
+        }
         name.setText(na);
         price.setText(pr);
         des.setText(de);

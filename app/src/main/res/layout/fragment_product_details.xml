@@ -99,6 +99,7 @@
                         android:layout_weight="1"
                         android:text="السعر             :"
                         android:textSize="18sp"
+                        android:id="@+id/details"
                         android:textColor="@color/color3"
                         android:padding="5dp"
                         android:layout_gravity="end"

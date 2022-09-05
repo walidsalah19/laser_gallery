@@ -1,16 +1,19 @@
 package economical.economical.economical.admin;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +22,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.R;
+import economical.economical.economical.SendNotificationPack.APIService;
+import economical.economical.economical.SendNotificationPack.Client;
+import economical.economical.economical.SendNotificationPack.Data;
+import economical.economical.economical.SendNotificationPack.MyResponse;
+import economical.economical.economical.SendNotificationPack.NotificationSender;
 import economical.economical.economical.admin.viewmodels.addproduct_viewmodel;
 import economical.economical.economical.data.prodect_data;
 import economical.economical.economical.multiple_imageview.imageview;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class add_new_product extends Fragment implements Datalistener{
+public class add_new_product extends Fragment implements Datalistener {
 
      private TextView add_image;
      private RecyclerView multiimage;
@@ -36,6 +53,7 @@ public class add_new_product extends Fragment implements Datalistener{
      private ArrayList<Uri> images;
     private ArrayList<String> images_str;
     private addproduct_viewmodel viewmodel;
+    private APIService apiService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +65,7 @@ public class add_new_product extends Fragment implements Datalistener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_add_new_product, container, false);
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
         viewmodel=new ViewModelProvider(getActivity()).get(addproduct_viewmodel.class);
         viewmodel.initialize(add_new_product.this);
         initialize(v);
@@ -69,6 +88,7 @@ public class add_new_product extends Fragment implements Datalistener{
         multiimage=v.findViewById(R.id.multipleImageview);
         images=new ArrayList<Uri>();
         type.setText(get_type());
+
     }
     private void add_data()
     {
@@ -156,7 +176,54 @@ public class add_new_product extends Fragment implements Datalistener{
             @Override
             public void onChanged(ArrayList<Boolean> booleans) {
                 Toast.makeText(getActivity(),"تم اضافة منتج جديد",Toast.LENGTH_LONG).show();
-                getActivity().onBackPressed();
+               getToken("Laser Gallery","تم اضافة منتج جديد");
+            }
+        });
+    }
+    private void getToken( String title, String message) {
+        FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                 if (snapshot.exists())
+                 {
+
+                     for(DataSnapshot snap:snapshot.getChildren())
+                     {
+                         String token=snap.child("token").getValue().toString();
+                         Log.d("tagtoken",token);
+                         sendNotifications(token, title, message);
+                     }
+
+                    // getActivity().onBackPressed();
+                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        }); }
+    private void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onResponse(@NonNull Call<MyResponse> call, @NonNull Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body() != null && response.body().success != 1) {
+                      // Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_LONG).show();
+                       Log.d("tag","error   "+response.code());
+                    } else {
+                        Log.d("tag", response.code() + " success ya Fashel " + response.body().success + " Token " + usertoken);
+                    }
+                } else {
+                    Log.d("tag", "Failed ya Fashel: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MyResponse> call, @NonNull Throwable t) {
             }
         });
     }

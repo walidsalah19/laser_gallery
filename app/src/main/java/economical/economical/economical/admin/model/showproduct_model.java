@@ -15,11 +15,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import economical.economical.economical.admin.Datalistener;
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.data.prodect_data;
 import economical.economical.economical.data.super_prodect_data;
-import economical.economical.economical.user.adapters.plastic_adapter;
-import economical.economical.economical.user.u_show_product;
 
 public class showproduct_model {
     private static showproduct_model model;
@@ -88,6 +86,10 @@ public class showproduct_model {
                         }
                         prodect_data.add(new prodect_data(super_data.get(y).getName(), super_data.get(y).getDescription()
                                 , super_data.get(y).getType(), super_data.get(y).getPrice(), super_data.get(y).getId(), images));
+                        if (type.equals("العروض"))
+                        {
+                            listener.onadddata();
+                        }
                         listener.ongetdata();
                     }
                 }

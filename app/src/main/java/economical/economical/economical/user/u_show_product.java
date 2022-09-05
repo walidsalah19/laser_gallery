@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import economical.economical.economical.R;
-import economical.economical.economical.admin.Datalistener;
+import economical.economical.economical.Datalistener;
 import economical.economical.economical.admin.viewmodels.shoeprodect_ciewmodel;
 import economical.economical.economical.data.prodect_data;
-import economical.economical.economical.user.adapters.plastic_adapter;
+import economical.economical.economical.adapters.plastic_adapter;
 public class u_show_product extends Fragment implements Datalistener {
 
     private RecyclerView recyclerView;
