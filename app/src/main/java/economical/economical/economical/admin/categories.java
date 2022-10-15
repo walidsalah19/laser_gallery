@@ -26,15 +26,6 @@ import economical.economical.economical.admin.viewmodels.categories_viewmodel;
 import economical.economical.economical.admin.viewmodels.shoeprodect_ciewmodel;
 import economical.economical.economical.data.category_data;
 import economical.economical.economical.data.prodect_data;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.schedulers.Schedulers;
-
 public class categories extends Fragment implements Datalistener {
     private RecyclerView recyclerView,recycler_discount;
     private categories_viewmodel viewmodel;

@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".user.user"
     android:background="@color/background_color">
-   <include android:layout_width="match_parent"
-       android:layout_height="match_parent"
+
+   <include
        layout="@layout/user_contant"
-       >
-   </include>
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></include>
 </RelativeLayout>
