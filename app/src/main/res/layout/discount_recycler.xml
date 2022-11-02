@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:layout_width="180dp"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
         app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
         android:layout_marginTop="5dp"
@@ -45,9 +45,10 @@
                 android:text="بلاستك"
                 android:id="@+id/category_name"
                 android:textColor="@color/color1"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:gravity="center"
                 android:layout_margin="10dp"
+                android:maxLines="1"
                 >
             </TextView>
 

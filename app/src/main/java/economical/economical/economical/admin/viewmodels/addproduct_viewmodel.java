@@ -1,6 +1,7 @@
 package economical.economical.economical.admin.viewmodels;
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -27,6 +28,7 @@ public class addproduct_viewmodel extends ViewModel {
     }
     public void send_product_firebase(String type, String id, prodect_data data)
     {
+        Log.d("this1","fgh1");
         this.type = type;
         this.id = id;
         this.data = data;

@@ -61,7 +61,7 @@ public class addproduct_model {
                 }
                 if (!found)
                 {
-                    add_data(type,id,data);
+
                 }
             }
 
@@ -87,7 +87,7 @@ public class addproduct_model {
     }
     public MutableLiveData<ArrayList<Boolean>> checkdata(String type, String id, prodect_data data)
     {
-        check_founddata(type, id, data);
+        add_data(type, id, data);
         MutableLiveData<ArrayList<Boolean>> mute=new MutableLiveData<ArrayList<Boolean>>();
         mute.setValue(arrayList);
         return mute;
